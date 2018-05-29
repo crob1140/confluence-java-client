@@ -1,9 +1,11 @@
 package com.github.crob1140.confluence;
 
 import com.github.crob1140.confluence.auth.AuthMethod;
+import com.github.crob1140.confluence.content.Content;
 import com.github.crob1140.confluence.errors.ConfluenceRequestException;
 import com.github.crob1140.confluence.errors.ErrorResponse;
 import com.github.crob1140.confluence.requests.ConfluenceRequest;
+import com.github.crob1140.confluence.requests.CreateContentRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -48,6 +50,17 @@ public class ConfluenceClient {
   public ConfluenceClient(WebTarget wikiTarget, AuthMethod authMethod) {
     this(wikiTarget);
     this.authMethod = authMethod;
+  }
+
+  /**
+   * This method sends a request to the Confluence Cloud server to create the content defined in the
+   * given {@link CreateContentRequest}.
+   *
+   * @param request The request defining the content that should be created, and what fields should
+   * be returned in the response.
+   */
+  public Content createContent(CreateContentRequest request) throws ConfluenceRequestException {
+    return (Content) performRequest(request);
   }
 
   /**
