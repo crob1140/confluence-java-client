@@ -262,6 +262,10 @@ public class CreateContentRequest extends ConfluenceRequest {
      * @throws IllegalStateException If the request that would be created would be invalid.
      */
     public CreateContentRequest build() throws IllegalStateException {
+      if (this.type == null || this.type.equals("")) {
+        throw new IllegalStateException("You must what type of content you wish to create.");
+      }
+
       if (this.spaceKey == null) {
         throw new IllegalStateException(
             "You must specify the spaces that the content is being created in.");
