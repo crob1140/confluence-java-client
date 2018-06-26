@@ -1,5 +1,7 @@
 package com.github.crob1140.confluence.content;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.crob1140.confluence.spaces.Space;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 /**
  * This class represents content within the Confluence Cloud server.
  */
+@JsonInclude(Include.NON_NULL)
 public class Content {
 
   @JsonProperty

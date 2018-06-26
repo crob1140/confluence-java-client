@@ -1,10 +1,13 @@
 package com.github.crob1140.confluence.content;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * This class represents the body of a content object in the Confluence Cloud server.
  */
+@JsonInclude(Include.NON_NULL)
 public class ContentBody {
 
   @JsonProperty

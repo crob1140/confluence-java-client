@@ -1,13 +1,22 @@
 package com.github.crob1140.confluence.users;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This class represents the profile picture for a {@link User} in the Confluence Cloud server.
  */
+@JsonInclude(Include.NON_NULL)
 public class ProfilePicture {
 
+  @JsonProperty
   private String path;
+  @JsonProperty
   private Integer width;
+  @JsonProperty
   private Integer height;
+  @JsonProperty
   private Boolean isDefault;
 
   /**

@@ -1,10 +1,13 @@
 package com.github.crob1140.confluence.spaces;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * This class represents a space in the Confluence Cloud server.
  */
+@JsonInclude(Include.NON_NULL)
 public class Space {
 
   @JsonProperty

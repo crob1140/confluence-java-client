@@ -1,15 +1,26 @@
 package com.github.crob1140.confluence.users;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * This class represents a user in the Confluence Cloud server.
  */
+@JsonInclude(Include.NON_NULL)
 public class User {
 
+  @JsonProperty
   private String username;
+  @JsonProperty
   private String userKey;
+  @JsonProperty
   private String accountId;
+  @JsonProperty
   private UserType type;
+  @JsonProperty
   private ProfilePicture profilePicture;
+  @JsonProperty
   private String displayName;
 
   /**
