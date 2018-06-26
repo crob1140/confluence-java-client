@@ -10,6 +10,10 @@ public class ErrorMessage {
 
   @JsonProperty
   private String translation;
+
+  @JsonProperty
+  private String key;
+
   @JsonProperty
   private List<Object> args; // TODO: whats in the array???
 
