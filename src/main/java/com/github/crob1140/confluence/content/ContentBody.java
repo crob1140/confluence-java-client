@@ -30,24 +30,25 @@ public class ContentBody {
    * @param value The value for the given body type.
    */
   public ContentBody(ContentBodyType type, String value) {
+    ContentBodyFormat bodyFormat = new ContentBodyFormat(value, type.getIdentifier());
     switch (type) {
       case ANONYMOUS_EXPORT_VIEW:
-        this.anonymous_export_view = new ContentBodyFormat(value);
+        this.anonymous_export_view = bodyFormat;
         break;
       case EDITOR2:
-        this.editor2 = new ContentBodyFormat(value);
+        this.editor2 = bodyFormat;
         break;
       case EXPORT_VIEW:
-        this.export_view = new ContentBodyFormat(value);
+        this.export_view = bodyFormat;
         break;
       case STORAGE:
-        this.storage = new ContentBodyFormat(value);
+        this.storage = bodyFormat;
         break;
       case STYLED_VIEW:
-        this.styled_view = new ContentBodyFormat(value);
+        this.styled_view = bodyFormat;
         break;
       case VIEW:
-        this.view = new ContentBodyFormat(value);
+        this.view = bodyFormat;
         break;
     }
   }

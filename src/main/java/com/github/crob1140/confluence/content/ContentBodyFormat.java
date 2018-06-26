@@ -17,11 +17,13 @@ public class ContentBodyFormat {
   private String representation;
 
   /**
-   * This constructor creates a format containing only the value.
+   * This constructor creates a format with the given value and representation.
    *
    * @param value The value of the format.
+   * @param representation The representation of the format.
    */
-  public ContentBodyFormat(String value) {
+  public ContentBodyFormat(String value, String representation) {
     this.value = value;
+    this.representation = representation;
   }
 }
