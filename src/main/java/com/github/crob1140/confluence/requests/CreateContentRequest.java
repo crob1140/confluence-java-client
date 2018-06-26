@@ -60,7 +60,7 @@ public class CreateContentRequest extends ConfluenceRequest {
    */
   @Override
   public String getRelativePath() {
-    return "/wiki/rest/api/content";
+    return "rest/api/content";
   }
 
   /**

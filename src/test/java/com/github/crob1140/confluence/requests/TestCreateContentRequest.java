@@ -61,7 +61,7 @@ public class TestCreateContentRequest {
                 .build(),
             MediaType.APPLICATION_JSON_TYPE,
             HttpMethod.POST,
-            "/wiki/rest/api/content",
+            "rest/api/content",
             new HashMap<String, String>(),
             "{" +
                 "   \"type\" : \"page\"," +
@@ -88,7 +88,7 @@ public class TestCreateContentRequest {
             .build(),
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.POST,
-        "/wiki/rest/api/content",
+        "rest/api/content",
         new HashMap<>(),
         "{" +
             "   \"type\" : \"attachment\"," +
@@ -112,7 +112,7 @@ public class TestCreateContentRequest {
             .build(),
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.POST,
-        "/wiki/rest/api/content",
+        "rest/api/content",
         buildQueryParamMap(new QueryParam("status", Arrays.asList("historical"))),
         "{" +
             "   \"type\" : \"comment\"," +
@@ -137,7 +137,7 @@ public class TestCreateContentRequest {
             .build(),
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.POST,
-        "/wiki/rest/api/content",
+        "rest/api/content",
         new HashMap<>(),
         "{" +
             "   \"type\" : \"page\"," +
