@@ -1,5 +1,6 @@
 package com.github.crob1140.confluence.spaces;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * This class represents a space in the Confluence Cloud server.
  */
 @JsonInclude(Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Space {
 
   @JsonProperty
@@ -20,6 +22,10 @@ public class Space {
   private SpaceStatus status;
   @JsonProperty
   private String key;
+
+  private Space() {
+    // Required for Jackson deserialization
+  }
 
   /**
    * This constructor creates a space containing with only the key defined.

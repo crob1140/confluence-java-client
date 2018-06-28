@@ -1,11 +1,13 @@
 package com.github.crob1140.confluence.errors;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
  * This class represents the data contained within an instance of {@link ErrorResponse}.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ErrorData {
 
   @JsonProperty

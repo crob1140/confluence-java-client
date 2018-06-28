@@ -1,5 +1,6 @@
 package com.github.crob1140.confluence.content;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,12 +10,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * ContentBody}.
  */
 @JsonInclude(Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContentBodyFormat {
 
   @JsonProperty
   private String value;
   @JsonProperty
   private String representation;
+
+  private ContentBodyFormat() {
+    // Required for Jackson deserialization
+  }
 
   /**
    * This constructor creates a format with the given value and representation.

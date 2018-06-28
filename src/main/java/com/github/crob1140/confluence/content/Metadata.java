@@ -1,5 +1,6 @@
 package com.github.crob1140.confluence.content;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -9,12 +10,17 @@ import java.util.List;
  * This class represents the metadata for an instance of {@link Content}.
  */
 @JsonInclude(Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Metadata {
 
   @JsonProperty
   private List<Label> labels;
   @JsonProperty
   private Version version;
+
+  private Metadata() {
+    // Required for Jackson deserialization
+  }
 
   /**
    * This constructor creates a metadata instance with only the labels defined.

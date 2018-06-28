@@ -1,5 +1,6 @@
 package com.github.crob1140.confluence.content;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,24 +11,29 @@ import java.util.List;
  * This class represents content within the Confluence Cloud server.
  */
 @JsonInclude(Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Content {
 
   @JsonProperty
-  private final String id;
+  private String id;
   @JsonProperty
-  private final String type;
+  private String type;
   @JsonProperty
-  private final ContentStatus status;
+  private ContentStatus status;
   @JsonProperty
-  private final String title;
+  private String title;
   @JsonProperty
-  private final Space space;
+  private Space space;
   @JsonProperty
-  private final List<Content> ancestors;
+  private List<Content> ancestors;
   @JsonProperty
-  private final ContentBody body;
+  private ContentBody body;
   @JsonProperty
-  private final Metadata metadata;
+  private Metadata metadata;
+
+  private Content() {
+    // Required for Jackson deserialization
+  }
 
   private Content(Builder builder) {
     this.id = builder.id;
@@ -140,14 +146,27 @@ public class Content {
     }
 
     /**
-     * This method sets the type of the content. This may match one of the values defined in {@link
-     * StandardContentType}, or may be a custom content type defined by an app.
+     * This method sets the type of the content.
+     *
+     * This method should only be used for custom types. Please use {@link
+     * #setType(StandardContentType)} when setting one of the standard content types.
      *
      * @param type The type of the content.
      * @return This instance, for the purposes of method chaining.
      */
     public Builder setType(String type) {
       this.type = type;
+      return this;
+    }
+
+    /**
+     * This method sets the type of the content.
+     *
+     * @param type The type of the content.
+     * @return This instance, for the purposes of method chaining.
+     */
+    public Builder setType(StandardContentType type) {
+      this.type = type.getIdentifier();
       return this;
     }
 

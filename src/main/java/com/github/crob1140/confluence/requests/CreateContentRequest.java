@@ -263,16 +263,16 @@ public class CreateContentRequest extends ConfluenceRequest {
      */
     public CreateContentRequest build() throws IllegalStateException {
       if (this.type == null || this.type.equals("")) {
-        throw new IllegalStateException("You must what type of content you wish to create.");
+        throw new IllegalStateException("You must specify the type of content you want to create");
       }
 
       if (this.spaceKey == null) {
         throw new IllegalStateException(
-            "You must specify the spaces that the content is being created in.");
+            "You must specify the space that the content is being created in");
       }
 
       if (this.status == ContentStatus.DRAFT && this.id == null) {
-        throw new IllegalStateException("You must provide an ID when publishing a draft.");
+        throw new IllegalStateException("You must provide an ID when creating a draft");
       }
       return new CreateContentRequest(this);
     }

@@ -6,9 +6,13 @@ import com.github.crob1140.confluence.errors.ConfluenceRequestException;
 import com.github.crob1140.confluence.errors.ErrorResponse;
 import com.github.crob1140.confluence.requests.ConfluenceRequest;
 import com.github.crob1140.confluence.requests.CreateContentRequest;
+import com.github.crob1140.confluence.requests.GetContentRequest;
+import com.github.crob1140.confluence.requests.GetContentResponse;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
@@ -53,6 +57,16 @@ public class ConfluenceClient {
   }
 
   /**
+   * This method sends a request to the Confluence Cloud server to retrieve content content matching
+   * the conditions set in the given {@link GetContentRequest}
+   *
+   * @param request The request defining the conditions for the Content that should be returned.
+   */
+  public List<Content> getContent(GetContentRequest request) throws ConfluenceRequestException {
+    return ((GetContentResponse) performRequest(request)).getResults();
+  }
+
+  /**
    * This method sends a request to the Confluence Cloud server to create the content defined in the
    * given {@link CreateContentRequest}.
    *
@@ -69,8 +83,15 @@ public class ConfluenceClient {
    * @throws ConfluenceRequestException If the server responses with an error status code
    */
   Object performRequest(ConfluenceRequest request) throws ConfluenceRequestException {
+    WebTarget endpointTarget = wikiTarget.path(request.getRelativePath());
+    for (Entry<String, Set<String>> queryParam : request.getQueryParams().entrySet()) {
+      String paramName = queryParam.getKey();
+      Set<String> paramValues = queryParam.getValue();
+      endpointTarget = endpointTarget.queryParam(paramName, paramValues.toArray());
+    }
+
+    Invocation.Builder invocationBuilder = endpointTarget.request();
     Map<String, String> headers = getRequestHeaders(request);
-    Invocation.Builder invocationBuilder = wikiTarget.path(request.getRelativePath()).request();
     for (Entry<String, String> headerEntry : headers.entrySet()) {
       invocationBuilder.header(headerEntry.getKey(), headerEntry.getValue());
     }

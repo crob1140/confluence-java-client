@@ -1,5 +1,6 @@
 package com.github.crob1140.confluence.content;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,12 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * This class represents a label contained within an instance of {@link Metadata}.
  */
 @JsonInclude(Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Label {
 
   @JsonProperty
   private LabelPrefix prefix = LabelPrefix.GLOBAL;
   @JsonProperty
   private String name;
+
+  private Label() {
+    // Required for Jackson deserialization
+  }
 
   /**
    * This constructor creates a new label with the given prefix and name.

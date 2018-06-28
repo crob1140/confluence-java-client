@@ -1,11 +1,13 @@
 package com.github.crob1140.confluence.errors;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * This class represents the response entity returned from a Confluence Cloud serve when an error
  * occurs.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ErrorResponse {
 
   @JsonProperty

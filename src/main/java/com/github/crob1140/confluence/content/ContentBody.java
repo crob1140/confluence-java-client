@@ -1,5 +1,6 @@
 package com.github.crob1140.confluence.content;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * This class represents the body of a content object in the Confluence Cloud server.
  */
 @JsonInclude(Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContentBody {
 
   @JsonProperty
@@ -22,6 +24,10 @@ public class ContentBody {
   private ContentBodyFormat styled_view;
   @JsonProperty
   private ContentBodyFormat view;
+
+  private ContentBody() {
+    // Required for Jackson deserialization
+  }
 
   /**
    * This constructor creates the content body using the value defined for a given type.
