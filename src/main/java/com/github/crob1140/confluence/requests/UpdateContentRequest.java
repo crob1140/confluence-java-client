@@ -189,6 +189,7 @@ public class UpdateContentRequest extends ConfluenceRequest {
      *
      * @param type The body type that is being defined.
      * @param content The value to set for the body type.
+     * @return This instance, for the purposes of method chaining.
      */
     public Builder setBody(ContentBodyType type, String content) {
       this.bodyType = type;

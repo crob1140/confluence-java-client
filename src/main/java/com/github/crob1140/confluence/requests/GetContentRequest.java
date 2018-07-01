@@ -274,6 +274,7 @@ public class GetContentRequest extends ConfluenceRequest {
      * This method sets the properties to be expanded in the results of this request.
      *
      * @param expandedProperties the properties to expand in the results of this request.
+     * @return This instance, for the purposes of method chaining.
      */
     public Builder setExpandedProperties(ExpandedContentProperties expandedProperties) {
       this.expandedProperties = expandedProperties;

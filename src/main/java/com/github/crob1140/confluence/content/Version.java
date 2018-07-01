@@ -25,6 +25,8 @@ public class Version {
 
   /**
    * This constructor creates a new instance with only the version number specified.
+   *
+   * @param number The version number
    */
   public Version(Integer number) {
     this.number = number;

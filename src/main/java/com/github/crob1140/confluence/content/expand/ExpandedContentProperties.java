@@ -144,6 +144,7 @@ public class ExpandedContentProperties {
      *
      * @param type The type of content.
      * @param properties The properties to expand for this type.
+     * @return This instance, for the purposes of method chaining.
      */
     public Builder addBody(ContentBodyType type, ExpandedBodyFormatProperties properties) {
       properties.getProperties()

@@ -190,6 +190,7 @@ public class CreateContentRequest extends ConfluenceRequest {
      *
      * @param type The body type that is being defined.
      * @param content The value to set for the body type.
+     * @return This intance, for the purposes of method chaining.
      */
     public Builder setBody(ContentBodyType type, String content) {
       this.bodyType = type;
@@ -264,6 +265,7 @@ public class CreateContentRequest extends ConfluenceRequest {
      *
      * @param expandedResponseProperties the properties to expand in the {@link Content} instance
      * that is returned as a response to this request.
+     * @return This instance, for the purposes of method chaining.
      */
     public Builder setExpandedResponseProperties(
         ExpandedContentProperties expandedResponseProperties) {

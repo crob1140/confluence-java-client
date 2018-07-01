@@ -18,6 +18,8 @@ public abstract class ConfluenceRequest {
 
   /**
    * This method returns the HTTP method used by this request.
+   *
+   * @return the HTTP method used by this request.
    */
   public abstract String getMethod();
 
