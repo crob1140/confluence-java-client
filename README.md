@@ -34,12 +34,35 @@ Confluence client = new ConfluenceClient(wikiTarget, basicAuth);
 
 Create some content:
 ```java
-Content content = client.createContent(new CreateContentRequest.Builder()
+Content newPage = client.createContent(new CreateContentRequest.Builder()
     .setType(StandardContentType.PAGE)
     .setSpaceKey("SAMPLE")
-    .setBody(ContentBodyType.STORAGE, "<html>SAMPLE</html>")
+    .setTitle("Sample Page")
+    .setBody(ContentBodyType.STORAGE, "<ac:rich-text-body><p>SAMPLE</p></ac:rich-text-body>")
     .build());
 ```
+
+Get existing content:
+```java
+List<Content> existingPages = client.getContent(new GetContentRequest.Builder()
+    .setSpaceKey("SAMPLE")
+    .setTitle("Sample Page")
+    .setExpandedProperties(new ExpandedContentProperties.Builder().addVersion().build())
+    .setLimit(1)
+    .build())
+```
+
+Update existing content:
+```java
+Content updatedContent = client.updateContent(new UpdateContentRequest.Builder()
+    .setId(existingPage.getId())
+    .setType(existingPage.getType())
+    .setStatus(ContentStatus.CURRENT)
+    .setBody(ContentBodyType.STORAGE, "<ac:rich-text-body><p>Updated body</p></ac:rich-text-body>")
+    .setVersion(existingPage.getVersion().getNumber() + 1)
+    .build())
+```
+
 ## Contribution
 This client is a work-in-progress, and API methods will be added iteratively.
 If there is a particular feature you would like added, feel free to raise it as an issue, or fork the repository and create a pull request with your own changes.
