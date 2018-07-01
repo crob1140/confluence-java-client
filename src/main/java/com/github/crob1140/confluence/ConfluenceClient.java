@@ -8,6 +8,7 @@ import com.github.crob1140.confluence.requests.ConfluenceRequest;
 import com.github.crob1140.confluence.requests.CreateContentRequest;
 import com.github.crob1140.confluence.requests.GetContentRequest;
 import com.github.crob1140.confluence.requests.GetContentResponse;
+import com.github.crob1140.confluence.requests.UpdateContentRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,6 +64,14 @@ public class ConfluenceClient {
    */
   public List<Content> getContent(GetContentRequest request) throws ConfluenceRequestException {
     return ((GetContentResponse) performRequest(request)).getResults();
+  }
+
+  /**
+   * This method sends a request to the Confluence Cloud server to update content the content as
+   * defined in the given {@link UpdateContentRequest}.
+   */
+  public Content updateContent(UpdateContentRequest request) throws ConfluenceRequestException {
+    return (Content) performRequest(request);
   }
 
   /**

@@ -30,6 +30,8 @@ public class Content {
   private ContentBody body;
   @JsonProperty
   private Metadata metadata;
+  @JsonProperty
+  private Version version;
 
   @SuppressWarnings("unused")
   private Content() {
@@ -45,6 +47,7 @@ public class Content {
     this.ancestors = builder.ancestors;
     this.body = builder.body;
     this.metadata = builder.metadata;
+    this.version = builder.version;
   }
 
   /**
@@ -121,6 +124,15 @@ public class Content {
   }
 
   /**
+   * This method returns the version of this content.
+   *
+   * @return The version of this content.
+   */
+  public Version getVersion() {
+    return version;
+  }
+
+  /**
    * This class can be used to construct an instance of {@link Content} for the purposes of creating
    * or modifying some content on the Confluence Cloud server.
    */
@@ -134,6 +146,7 @@ public class Content {
     private List<Content> ancestors;
     private ContentBody body;
     private Metadata metadata;
+    private Version version;
 
     /**
      * This method sets the unique identifier for the content.
@@ -234,6 +247,17 @@ public class Content {
      */
     public Builder setMetadata(Metadata metadata) {
       this.metadata = metadata;
+      return this;
+    }
+
+    /**
+     * This method sets the version of the content.
+     *
+     * @param version The version of the content
+     * @return This instance, for the purposes of method chaining.
+     */
+    public Builder setVersion(Version version) {
+      this.version = version;
       return this;
     }
 

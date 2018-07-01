@@ -18,6 +18,18 @@ public class Version {
   @JsonProperty
   private Integer number;
 
+  @SuppressWarnings("unused")
+  private Version() {
+    // Required for Jackson deserialization
+  }
+
+  /**
+   * This constructor creates a new instance with only the version number specified.
+   */
+  public Version(Integer number) {
+    this.number = number;
+  }
+
   /**
    * This method returns the user that created the content.
    *
