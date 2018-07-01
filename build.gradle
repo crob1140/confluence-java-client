@@ -2,7 +2,8 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'nebula.release' version '6.0.0'
-    id 'maven-publish'
+    id 'maven'
+    id 'signing'
 }
 
 group 'com.github.crob1140'
@@ -42,10 +43,67 @@ jacocoTestReport {
     }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                artifactId = 'confluence-java-client'
+                name 'Confluence Java Client'
+                packaging 'jar'
+                description 'A simple Java client for the Confluence Cloud REST API'
+                url 'https://github.com/crob1140/confluence-java-client'
+
+                scm {
+                    connection 'scm:git@github.com/crob1140/confluence-java-client.git'
+                    developerConnection 'scm:git@github.com/crob1140/confluence-java-client.git'
+                    url 'https://github.com/crob1140/confluence-java-client.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The MIT License'
+                        url "http://www.opensource.org/licenses/MIT"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'cjrobertson'
+                        name 'Callum Robertson'
+                        email 'mail@cjrobertson.net'
+                    }
+                }
+            }
         }
     }
 }
+
+signing {
+    sign configurations.archives
+}
+
+tasks.final.finalizedBy uploadArchives
