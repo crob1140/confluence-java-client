@@ -2,7 +2,6 @@ package com.github.crob1140.confluence.requests;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import javax.ws.rs.core.MediaType;
 
 /**
@@ -27,7 +26,7 @@ public abstract class ConfluenceRequest {
    *
    * @return The query parameters for this request.
    */
-  public abstract Map<String, Set<String>> getQueryParams();
+  public abstract Map<String, String> getQueryParams();
 
   /**
    * This method returns the entity that is sent in the body of the request.

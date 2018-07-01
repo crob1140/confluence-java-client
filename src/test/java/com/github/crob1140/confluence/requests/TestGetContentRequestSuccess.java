@@ -43,7 +43,7 @@ public class TestGetContentRequestSuccess extends TestConfluenceRequestSuccess {
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.GET,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("limit", Arrays.asList("123")).build(),
+        new QueryParamMapBuilder().addEntry("limit", "123").build(),
         ""
     }, {
         "Any order-by clause that is provided is added to the query parameters",
@@ -51,15 +51,15 @@ public class TestGetContentRequestSuccess extends TestConfluenceRequestSuccess {
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.GET,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("orderBy", Arrays.asList("somefield asc")).build(),
+        new QueryParamMapBuilder().addEntry("orderBy", "somefield asc").build(),
         ""
     }, {
         "Any posting day that is provided is added to the query parameters",
-        new GetContentRequest.Builder().setPostingDay(LocalDate.of(2018, 06, 27)).build(),
+        new GetContentRequest.Builder().setPostingDay(LocalDate.of(2018, 6, 27)).build(),
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.GET,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("postingDay", Arrays.asList("2018-06-27")).build(),
+        new QueryParamMapBuilder().addEntry("postingDay", "2018-06-27").build(),
         ""
     }, {
         "Any space key that is provided is added to the query parameters",
@@ -67,7 +67,7 @@ public class TestGetContentRequestSuccess extends TestConfluenceRequestSuccess {
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.GET,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("spaceKey", Arrays.asList("TESTSPACE")).build(),
+        new QueryParamMapBuilder().addEntry("spaceKey", "TESTSPACE").build(),
         ""
     }, {
         "Any start position that is provided is added to the query parameters",
@@ -75,7 +75,7 @@ public class TestGetContentRequestSuccess extends TestConfluenceRequestSuccess {
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.GET,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("start", Arrays.asList("123")).build(),
+        new QueryParamMapBuilder().addEntry("start", "123").build(),
         ""
     }, {
         "Any status that is provided is added to the query parameters",
@@ -83,7 +83,7 @@ public class TestGetContentRequestSuccess extends TestConfluenceRequestSuccess {
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.GET,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("status", Arrays.asList("draft")).build(),
+        new QueryParamMapBuilder().addEntry("status", "draft").build(),
         ""
     }, {
         "Any title that is provided is added to the query parameters",
@@ -91,7 +91,7 @@ public class TestGetContentRequestSuccess extends TestConfluenceRequestSuccess {
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.GET,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("title", Arrays.asList("Test title")).build(),
+        new QueryParamMapBuilder().addEntry("title", "Test title").build(),
         ""
     }, {
         "Any trigger that is provided is added to the query parameters",
@@ -99,7 +99,7 @@ public class TestGetContentRequestSuccess extends TestConfluenceRequestSuccess {
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.GET,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("trigger", Arrays.asList("viewed")).build(),
+        new QueryParamMapBuilder().addEntry("trigger", "viewed").build(),
         ""
     }, {
         "Any type that is provided is added to the query parameters",
@@ -107,7 +107,7 @@ public class TestGetContentRequestSuccess extends TestConfluenceRequestSuccess {
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.GET,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("type", Arrays.asList("page")).build(),
+        new QueryParamMapBuilder().addEntry("type", "page").build(),
         ""
     }});
   }

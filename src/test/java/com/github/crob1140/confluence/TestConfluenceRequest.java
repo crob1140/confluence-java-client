@@ -55,7 +55,7 @@ public class TestConfluenceRequest extends ConfluenceRequest {
    * @return The query parameters for this request.
    */
   @Override
-  public Map<String, Set<String>> getQueryParams() {
+  public Map<String, String> getQueryParams() {
     return new HashMap<>();
   }
 

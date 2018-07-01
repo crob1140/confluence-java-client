@@ -90,7 +90,7 @@ public class TestCreateContentRequestSuccess extends TestConfluenceRequestSucces
         MediaType.APPLICATION_JSON_TYPE,
         HttpMethod.POST,
         "rest/api/content",
-        new QueryParamMapBuilder().addEntry("status", Arrays.asList("historical")).build(),
+        new QueryParamMapBuilder().addEntry("status", "historical").build(),
         "{" +
             "   \"type\" : \"comment\"," +
             "   \"space\" : {" +

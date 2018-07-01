@@ -3,13 +3,13 @@ package com.github.crob1140.confluence.requests;
 import com.github.crob1140.confluence.content.ContentStatus;
 import com.github.crob1140.confluence.content.SortDirection;
 import com.github.crob1140.confluence.content.StandardContentType;
+import com.github.crob1140.confluence.content.expand.ExpandedContentProperties;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
+import java.util.stream.Collectors;
 import javax.ws.rs.HttpMethod;
 
 /**
@@ -28,6 +28,7 @@ public class GetContentRequest extends ConfluenceRequest {
   private final String title;
   private final String trigger;
   private final String type;
+  private final ExpandedContentProperties expandedProperties;
 
   private GetContentRequest(Builder builder) {
     limit = builder.limit;
@@ -40,6 +41,7 @@ public class GetContentRequest extends ConfluenceRequest {
     title = builder.title;
     trigger = builder.trigger;
     type = builder.type;
+    expandedProperties = builder.expandedProperties;
   }
 
   /**
@@ -66,45 +68,48 @@ public class GetContentRequest extends ConfluenceRequest {
    * @return The query parameters for this request.
    */
   @Override
-  public Map<String, Set<String>> getQueryParams() {
-    Map<String, Set<String>> queryParams = new HashMap<>();
+  public Map<String, String> getQueryParams() {
+    Map<String, String> queryParams = new HashMap<>();
 
     if (this.limit != null) {
-      queryParams.put("limit", Collections.singleton(Integer.toString(this.limit)));
+      queryParams.put("limit", Integer.toString(this.limit));
     }
 
     if (this.orderByField != null) {
-      queryParams.put("orderBy", Collections.singleton(this.orderByField +
-          " " + this.orderByDirection.getIdentifier()));
+      queryParams.put("orderBy", this.orderByField + " " + this.orderByDirection.getIdentifier());
     }
 
     if (this.postingDay != null) {
-      queryParams.put("postingDay",
-          Collections.singleton(this.postingDay.format(DateTimeFormatter.ISO_LOCAL_DATE)));
+      queryParams.put("postingDay", this.postingDay.format(DateTimeFormatter.ISO_LOCAL_DATE));
     }
 
     if (this.spaceKey != null) {
-      queryParams.put("spaceKey", Collections.singleton(this.spaceKey));
+      queryParams.put("spaceKey", this.spaceKey);
     }
 
     if (this.start != null) {
-      queryParams.put("start", Collections.singleton(Integer.toString(this.start)));
+      queryParams.put("start", Integer.toString(this.start));
     }
 
     if (this.status != null) {
-      queryParams.put("status", Collections.singleton(this.status.getIdentifier()));
+      queryParams.put("status", this.status.getIdentifier());
     }
 
     if (this.title != null) {
-      queryParams.put("title", Collections.singleton(this.title));
+      queryParams.put("title", this.title);
     }
 
     if (this.trigger != null) {
-      queryParams.put("trigger", Collections.singleton(this.trigger));
+      queryParams.put("trigger", this.trigger);
     }
 
     if (this.type != null) {
-      queryParams.put("type", Collections.singleton(this.type));
+      queryParams.put("type", this.type);
+    }
+
+    if (this.expandedProperties != null) {
+      queryParams.put("expand", this.expandedProperties.getProperties()
+          .stream().collect(Collectors.joining(",")));
     }
 
     return queryParams;
@@ -145,6 +150,7 @@ public class GetContentRequest extends ConfluenceRequest {
     private String title;
     private String trigger;
     private String type;
+    private ExpandedContentProperties expandedProperties;
 
     /**
      * This method sets the maximum number of results for the request.
@@ -261,6 +267,16 @@ public class GetContentRequest extends ConfluenceRequest {
      */
     public Builder setType(StandardContentType type) {
       this.type = type.getIdentifier();
+      return this;
+    }
+
+    /**
+     * This method sets the properties to be expanded in the results of this request.
+     *
+     * @param expandedProperties the properties to expand in the results of this request.
+     */
+    public Builder setExpandedProperties(ExpandedContentProperties expandedProperties) {
+      this.expandedProperties = expandedProperties;
       return this;
     }
 

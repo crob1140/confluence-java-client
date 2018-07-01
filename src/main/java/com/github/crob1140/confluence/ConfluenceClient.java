@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
@@ -84,10 +83,8 @@ public class ConfluenceClient {
    */
   Object performRequest(ConfluenceRequest request) throws ConfluenceRequestException {
     WebTarget endpointTarget = wikiTarget.path(request.getRelativePath());
-    for (Entry<String, Set<String>> queryParam : request.getQueryParams().entrySet()) {
-      String paramName = queryParam.getKey();
-      Set<String> paramValues = queryParam.getValue();
-      endpointTarget = endpointTarget.queryParam(paramName, paramValues.toArray());
+    for (Entry<String, String> queryParam : request.getQueryParams().entrySet()) {
+      endpointTarget = endpointTarget.queryParam(queryParam.getKey(), queryParam.getValue());
     }
 
     Invocation.Builder invocationBuilder = endpointTarget.request();

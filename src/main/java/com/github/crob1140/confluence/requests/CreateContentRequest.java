@@ -8,15 +8,14 @@ import com.github.crob1140.confluence.content.Label;
 import com.github.crob1140.confluence.content.LabelPrefix;
 import com.github.crob1140.confluence.content.Metadata;
 import com.github.crob1140.confluence.content.StandardContentType;
+import com.github.crob1140.confluence.content.expand.ExpandedContentProperties;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import javax.ws.rs.HttpMethod;
 
 /**
@@ -26,17 +25,19 @@ public class CreateContentRequest extends ConfluenceRequest {
 
   // Query params
   private final ContentStatus responseStatusFilter;
+  private final ExpandedContentProperties expandedResponseProperties;
 
   // Body
   private Content content;
 
   private CreateContentRequest(Builder builder) {
     this.responseStatusFilter = builder.responseStatusFilter;
+    this.expandedResponseProperties = builder.expandedResponseProperties;
 
     Content.Builder contentBuilder = new Content.Builder();
     if (builder.ancestorId != null) {
       Content ancestor = new Content.Builder().setId(builder.ancestorId).build();
-      contentBuilder.setAncestors(Arrays.asList(ancestor));
+      contentBuilder.setAncestors(Collections.singletonList(ancestor));
     }
 
     if (builder.bodyContent != null) {
@@ -77,15 +78,17 @@ public class CreateContentRequest extends ConfluenceRequest {
    * @return The query parameters for this request.
    */
   @Override
-  public Map<String, Set<String>> getQueryParams() {
-    Map<String, Set<String>> queryParams = new HashMap<>();
+  public Map<String, String> getQueryParams() {
+    Map<String, String> queryParams = new HashMap<>();
 
     if (this.responseStatusFilter != null) {
-      queryParams.put("status",
-          Stream.of(responseStatusFilter.getIdentifier()).collect(Collectors.toSet()));
+      queryParams.put("status", responseStatusFilter.getIdentifier());
     }
 
-    // TODO: add the ability to populate the "expand" query parameter as well
+    if (this.expandedResponseProperties != null) {
+      queryParams.put("expand", this.expandedResponseProperties.getProperties()
+          .stream().collect(Collectors.joining(",")));
+    }
 
     return queryParams;
   }
@@ -125,6 +128,7 @@ public class CreateContentRequest extends ConfluenceRequest {
     private String title;
     private String type;
     private List<Label> labels = new ArrayList<>();
+    private ExpandedContentProperties expandedResponseProperties;
 
     /**
      * This method sets the ancestor for the content by ID.
@@ -251,6 +255,19 @@ public class CreateContentRequest extends ConfluenceRequest {
      */
     public Builder addLabel(String label, LabelPrefix prefix) {
       this.labels.add(new Label(prefix, label));
+      return this;
+    }
+
+    /**
+     * This method sets the properties to be expanded in the {@link Content} instance that is
+     * returned as a response to this request.
+     *
+     * @param expandedResponseProperties the properties to expand in the {@link Content} instance
+     * that is returned as a response to this request.
+     */
+    public Builder setExpandedResponseProperties(
+        ExpandedContentProperties expandedResponseProperties) {
+      this.expandedResponseProperties = expandedResponseProperties;
       return this;
     }
 
