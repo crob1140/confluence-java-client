@@ -25,6 +25,7 @@ public class ContentBody {
   @JsonProperty
   private ContentBodyFormat view;
 
+  @SuppressWarnings("unused")
   private ContentBody() {
     // Required for Jackson deserialization
   }

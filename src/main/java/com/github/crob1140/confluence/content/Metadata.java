@@ -18,6 +18,7 @@ public class Metadata {
   @JsonProperty
   private Version version;
 
+  @SuppressWarnings("unused")
   private Metadata() {
     // Required for Jackson deserialization
   }

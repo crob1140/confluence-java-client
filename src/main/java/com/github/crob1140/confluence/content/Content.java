@@ -31,6 +31,7 @@ public class Content {
   @JsonProperty
   private Metadata metadata;
 
+  @SuppressWarnings("unused")
   private Content() {
     // Required for Jackson deserialization
   }
@@ -146,10 +147,10 @@ public class Content {
     }
 
     /**
-     * This method sets the type of the content.
+     * <p>This method sets the type of the content.</p>
      *
-     * This method should only be used for custom types. Please use {@link
-     * #setType(StandardContentType)} when setting one of the standard content types.
+     * <p>This method should only be used for custom types. Please use {@link
+     * #setType(StandardContentType)} when setting one of the standard content types.</p>
      *
      * @param type The type of the content.
      * @return This instance, for the purposes of method chaining.

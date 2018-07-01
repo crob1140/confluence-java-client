@@ -14,6 +14,7 @@ public class TestConfluenceResponse {
   private String value;
 
   // Required for Jackson deserialization
+  @SuppressWarnings("unused")
   private TestConfluenceResponse() {
   }
 
@@ -23,14 +24,13 @@ public class TestConfluenceResponse {
    * @param name The value to set for the "name" field.
    * @param value The value to set for the "value" field.
    */
-  public TestConfluenceResponse(String name, String value) {
+  TestConfluenceResponse(String name, String value) {
     this.name = name;
     this.value = value;
   }
 
   @Override
   public boolean equals(Object o) {
-    super.equals(o);
     if (this == o) {
       return true;
     }

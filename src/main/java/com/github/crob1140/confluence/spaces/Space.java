@@ -23,6 +23,7 @@ public class Space {
   @JsonProperty
   private String key;
 
+  @SuppressWarnings("unused")
   private Space() {
     // Required for Jackson deserialization
   }

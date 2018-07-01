@@ -6,7 +6,7 @@ import com.github.crob1140.confluence.content.Content;
 import java.util.List;
 
 /**
- * This class represents the response that is returned for a {@link GetContentRequest}
+ * This class represents the response that is returned for a {@link GetContentRequest}.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GetContentResponse {
@@ -20,12 +20,13 @@ public class GetContentResponse {
   @JsonProperty
   private Integer size;
 
+  @SuppressWarnings("unused")
   private GetContentResponse() {
     // Required for Jackson deserialization
   }
 
   /**
-   * This constructor initialises the response with the given set of results
+   * This constructor initialises the response with the given set of results.
    *
    * @param results The results contained in the response
    */

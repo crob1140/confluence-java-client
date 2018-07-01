@@ -17,14 +17,11 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class TestCreateContentRequestSuccess extends TestConfluenceRequestSuccess {
 
-  private String description;
-
   public TestCreateContentRequestSuccess(String description, CreateContentRequest request,
       MediaType expectedContentType, String expectedMethod, String expectedPath,
       Map<String, String> expectedQueryParams, String expectedBodyJson) {
     super(request, expectedContentType, expectedMethod, expectedPath, expectedQueryParams,
         expectedBodyJson);
-    this.description = description;
   }
 
   @Parameters(name = "{0}")

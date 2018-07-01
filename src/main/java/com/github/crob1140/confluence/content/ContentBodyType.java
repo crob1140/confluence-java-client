@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * This enumerable represents the possible types that can be defined for an instance of {@link
- * ContentBody}
+ * ContentBody}.
  */
 public enum ContentBodyType {
   ANONYMOUS_EXPORT_VIEW("anonymous_export_view"),

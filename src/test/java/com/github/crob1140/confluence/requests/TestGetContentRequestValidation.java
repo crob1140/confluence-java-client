@@ -15,7 +15,6 @@ public class TestGetContentRequestValidation {
   @Rule
   public final ExpectedException exception = ExpectedException.none();
 
-  private String description;
   private GetContentRequest.Builder requestBuilder;
   private Class<Exception> expectedExceptionClass;
   private String expectedExceptionMessage;
@@ -23,7 +22,6 @@ public class TestGetContentRequestValidation {
   public TestGetContentRequestValidation(String description,
       GetContentRequest.Builder requestBuilder, Class<Exception> expectedExceptionClass,
       String expectedExceptionMessage) {
-    this.description = description;
     this.requestBuilder = requestBuilder;
     this.expectedExceptionClass = expectedExceptionClass;
     this.expectedExceptionMessage = expectedExceptionMessage;

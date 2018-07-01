@@ -4,7 +4,6 @@ import com.github.crob1140.confluence.requests.ConfluenceRequest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * This class represents a configurable instance of {@link ConfluenceRequest} that can be used for
@@ -25,7 +24,7 @@ public class TestConfluenceRequest extends ConfluenceRequest {
    * @param path The path to use for the request.
    * @param returnType The type to use when de-serializing the response for this request.
    */
-  public TestConfluenceRequest(String method, String path, Class<?> returnType) {
+  TestConfluenceRequest(String method, String path, Class<?> returnType) {
     this.method = method;
     this.path = path;
     this.returnType = returnType;

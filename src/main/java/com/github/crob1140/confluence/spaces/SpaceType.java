@@ -1,6 +1,5 @@
 package com.github.crob1140.confluence.spaces;
 
-
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**

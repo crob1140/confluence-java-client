@@ -15,7 +15,6 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class TestCreateContentRequestValidation {
 
-  private String description;
   private CreateContentRequest.Builder requestBuilder;
   private Class<Exception> expectedExceptionClass;
   private String expectedExceptionMessage;
@@ -23,7 +22,6 @@ public class TestCreateContentRequestValidation {
   public TestCreateContentRequestValidation(String description,
       CreateContentRequest.Builder requestBuilder, Class<Exception> expectedExceptionClass,
       String expectedExceptionMessage) {
-    this.description = description;
     this.requestBuilder = requestBuilder;
     this.expectedExceptionClass = expectedExceptionClass;
     this.expectedExceptionMessage = expectedExceptionMessage;

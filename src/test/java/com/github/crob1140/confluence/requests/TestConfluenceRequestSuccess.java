@@ -10,7 +10,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
-public class TestConfluenceRequestSuccess {
+public abstract class TestConfluenceRequestSuccess {
 
   protected ConfluenceRequest request;
 

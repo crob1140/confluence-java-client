@@ -18,6 +18,7 @@ public class ContentBodyFormat {
   @JsonProperty
   private String representation;
 
+  @SuppressWarnings("unused")
   private ContentBodyFormat() {
     // Required for Jackson deserialization
   }
