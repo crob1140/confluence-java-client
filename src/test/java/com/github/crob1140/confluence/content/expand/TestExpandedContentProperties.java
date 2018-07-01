@@ -212,10 +212,10 @@ public class TestExpandedContentProperties {
         .addUpdateGroups()
         .build());
 
-    expectedExpandProperties.add("restrictions.read.users");
-    expectedExpandProperties.add("restrictions.read.groups");
-    expectedExpandProperties.add("restrictions.update.users");
-    expectedExpandProperties.add("restrictions.update.groups");
+    expectedExpandProperties.add("restrictions.read.restrictions.user");
+    expectedExpandProperties.add("restrictions.read.restrictions.group");
+    expectedExpandProperties.add("restrictions.update.restrictions.user");
+    expectedExpandProperties.add("restrictions.update.restrictions.group");
 
     Set<String> actualExpandProperties = expandedContentPropsBuilder.build().getProperties();
     Assert.assertEquals(expectedExpandProperties, actualExpandProperties);
