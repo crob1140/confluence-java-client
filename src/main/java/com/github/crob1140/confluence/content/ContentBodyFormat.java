@@ -33,4 +33,13 @@ public class ContentBodyFormat {
     this.value = value;
     this.representation = representation;
   }
+
+  public String getValue( ) {
+    return value;
+  }
+
+  public String getRepresentation( ) {
+    return representation;
+  }
+
 }

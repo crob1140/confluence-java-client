@@ -30,7 +30,7 @@ public class ContentBody {
     // Required for Jackson deserialization
   }
 
-  /**
+    /**
    * This constructor creates the content body using the value defined for a given type.
    *
    * @param type The body type that is being defined.
@@ -59,4 +59,29 @@ public class ContentBody {
         break;
     }
   }
+
+  public ContentBodyFormat getAnonymous_export_view( ) {
+    return anonymous_export_view;
+  }
+
+  public ContentBodyFormat getEditor2( ) {
+    return editor2;
+  }
+
+  public ContentBodyFormat getExport_view( ) {
+    return export_view;
+  }
+
+  public ContentBodyFormat getStorage( ) {
+    return storage;
+  }
+
+  public ContentBodyFormat getStyled_view( ) {
+    return styled_view;
+  }
+
+  public ContentBodyFormat getView( ) {
+    return view;
+  }
+
 }
