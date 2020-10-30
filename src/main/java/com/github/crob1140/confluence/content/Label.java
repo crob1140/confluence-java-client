@@ -16,7 +16,9 @@ public class Label {
   private LabelPrefix prefix = LabelPrefix.GLOBAL;
   @JsonProperty
   private String name;
-  
+  @JsonProperty
+  private String id;
+
   @SuppressWarnings("unused")
   private Label() {
     // Required for Jackson deserialization

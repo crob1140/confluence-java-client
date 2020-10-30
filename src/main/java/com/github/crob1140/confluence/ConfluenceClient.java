@@ -2,12 +2,17 @@ package com.github.crob1140.confluence;
 
 import com.github.crob1140.confluence.auth.AuthMethod;
 import com.github.crob1140.confluence.content.Content;
+import com.github.crob1140.confluence.content.search.SearchResult;
 import com.github.crob1140.confluence.errors.ConfluenceRequestException;
 import com.github.crob1140.confluence.errors.ErrorResponse;
 import com.github.crob1140.confluence.requests.ConfluenceRequest;
 import com.github.crob1140.confluence.requests.CreateContentRequest;
 import com.github.crob1140.confluence.requests.GetContentRequest;
 import com.github.crob1140.confluence.requests.GetContentResponse;
+import com.github.crob1140.confluence.requests.SearchContentRequest;
+import com.github.crob1140.confluence.requests.SearchContentResponse;
+import com.github.crob1140.confluence.requests.SearchRequest;
+import com.github.crob1140.confluence.requests.SearchResponse;
 import com.github.crob1140.confluence.requests.UpdateContentRequest;
 import java.util.HashMap;
 import java.util.List;
@@ -93,6 +98,40 @@ public class ConfluenceClient {
    */
   public Content createContent(CreateContentRequest request) throws ConfluenceRequestException {
     return (Content) performRequest(request);
+  }
+
+  /**
+   * This method sends a request to the Confluence Cloud server to search for content defined in the
+   * given {@link SearchContentRequest}.
+   *
+   * @see <a href="https://developer.atlassian.com/server/confluence/advanced-searching-using-cql/">Confluence Query Language (CQL)</a>
+   * @see <a href="https://docs.atlassian.com/atlassian-confluence/REST/6.6.0/#content-search">Confluence Search API</a>
+   *
+   * @param request The request defining the search that should be performed, and what fields should
+   * be returned in the response.
+   * @return The content in the Conflucnce Cloud server that matches the conditions set in the given
+   * {@link SearchContentRequest}.
+   * @throws ConfluenceRequestException If the server responses with an error status code
+   */
+  public List<Content> searchContent(SearchContentRequest request) throws ConfluenceRequestException {
+    return ((SearchContentResponse) performRequest(request)).getResults();
+  }
+
+  /**
+   * This method sends a request to the Confluence Cloud server to search for everything (content, space, user etc.) defined in the
+   * given {@link SearchRequest}.
+   *
+   * @see <a href="https://developer.atlassian.com/server/confluence/advanced-searching-using-cql/">Confluence Query Language (CQL)</a>
+   * @see <a href="https://docs.atlassian.com/atlassian-confluence/REST/6.6.0/#search-search">Confluence Search API</a>
+   *
+   * @param request The request defining the search that should be performed, and what fields should
+   * be returned in the response.
+   * @return The content in the Conflucnce Cloud server that matches the conditions set in the given
+   * {@link SearchRequest}.
+   * @throws ConfluenceRequestException If the server responses with an error status code
+   */
+  public List<SearchResult> search(SearchRequest request) throws ConfluenceRequestException {
+    return ((SearchResponse) performRequest(request)).getResults();
   }
 
   /**
